@@ -38,7 +38,7 @@ app.setPath('userData', userDataPath);
 const crashReporterDirectory = args['crash-reporter-directory'];
 if (crashReporterDirectory) {
 	if (!fs.existsSync(crashReporterDirectory)) {
-		console.error('The path specified for --crash-reporter-directory does not seem to exist.');
+		console.error(`The path '${crashReporterDirectory}' specified for --crash-reporter-directory does not seem to exist.`);
 		app.exit(1);
 	}
 	app.setPath('temp', crashReporterDirectory);
