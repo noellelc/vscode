@@ -31,7 +31,7 @@ if "%INTEGRATION_TEST_ELECTRON_PATH%"=="" (
 	set VSCODE_CLI=1
 	set ELECTRON_ENABLE_LOGGING=1
 
-	echo Storing crash reports into %VSCODECRASHDIR%
+	echo Storing crash reports into '%VSCODECRASHDIR%'.
 	echo Running integration tests with '%INTEGRATION_TEST_ELECTRON_PATH%' as build.
 )
 
@@ -42,7 +42,6 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 :: Tests in the extension host
 
 call "%INTEGRATION_TEST_ELECTRON_PATH%" %~dp0\..\extensions\vscode-api-tests\testWorkspace --enable-proposed-api=vscode.vscode-api-tests --extensionDevelopmentPath=%~dp0\..\extensions\vscode-api-tests --extensionTestsPath=%~dp0\..\extensions\vscode-api-tests\out\singlefolder-tests --disable-telemetry --crash-reporter-directory=%VSCODECRASHDIR% --disable-updates --disable-extensions --user-data-dir=%VSCODEUSERDATADIR%
-dir /S %VSCODECRASHDIR%
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 call "%INTEGRATION_TEST_ELECTRON_PATH%" %~dp0\..\extensions\vscode-api-tests\testworkspace.code-workspace --enable-proposed-api=vscode.vscode-api-tests --extensionDevelopmentPath=%~dp0\..\extensions\vscode-api-tests --extensionTestsPath=%~dp0\..\extensions\vscode-api-tests\out\workspace-tests --disable-telemetry --crash-reporter-directory=%VSCODECRASHDIR% --disable-updates --disable-extensions --user-data-dir=%VSCODEUSERDATADIR%
