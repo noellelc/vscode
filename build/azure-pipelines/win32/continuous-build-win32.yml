@@ -57,6 +57,7 @@ steps:
   inputs:
     artifactName: crash-dump-windows
     targetPath: .build\crashes
+  condition: succeededOrFailed()
 - task: PublishTestResults@2
   displayName: Publish Tests Results
   inputs:
