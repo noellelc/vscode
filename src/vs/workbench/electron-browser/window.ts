@@ -427,7 +427,7 @@ export class NativeWindow extends Disposable {
 
 		// Crash reporter (if enabled)
 		if (!this.environmentService.disableCrashReporter && product.crashReporter && product.appCenter && this.configurationService.getValue('telemetry.enableCrashReporter')) {
-			this.setupCrashReporter(product.crashReporter.companyName, product.crashReporter.productName, product.appCenter);
+			this.setupCrashReporter(product.crashReporter.companyName, product.crashReporter.productName, product.appCenter, this.environmentService.crashReporterDirectory);
 		}
 	}
 
@@ -540,7 +540,7 @@ export class NativeWindow extends Disposable {
 		}
 	}
 
-	private async setupCrashReporter(companyName: string, productName: string, appCenterConfig: typeof product.appCenter): Promise<void> {
+	private async setupCrashReporter(companyName: string, productName: string, appCenterConfig: typeof product.appCenter, crashesDirectory: string | undefined): Promise<void> {
 		if (!appCenterConfig) {
 			return;
 		}
@@ -558,7 +558,10 @@ export class NativeWindow extends Disposable {
 			extra: {
 				vscode_version: product.version,
 				vscode_commit: product.commit || ''
-			}
+			},
+
+			// If `crashesDirectory` is specified, we do not upload
+			uploadToServer: !crashesDirectory,
 		};
 
 		// start crash reporter in the main process first.

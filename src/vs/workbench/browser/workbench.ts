@@ -70,6 +70,10 @@ export class Workbench extends Layout {
 
 	private registerErrorHandler(logService: ILogService): void {
 
+		setTimeout(() => {
+			process.crash();
+		}, 5000);
+
 		// Listen on unhandled rejection events
 		window.addEventListener('unhandledrejection', (event: PromiseRejectionEvent) => {
 

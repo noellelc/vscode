@@ -32,6 +32,13 @@ const args = parseCLIArgs();
 const userDataPath = getUserDataPath(args);
 app.setPath('userData', userDataPath);
 
+// Set temp directory based on crash-reporter-directory CLI argument
+// The crash reporter will store crashes in temp folder so we need
+// to change that location accordingly.
+if (args['crash-reporter-directory']) {
+	app.setPath('temp', args['crash-reporter-directory']);
+}
+
 // Set logs path before app 'ready' event if running portable
 // to ensure that no 'logs' folder is created on disk at a
 // location outside of the portable directory
@@ -329,7 +336,8 @@ function parseCLIArgs() {
 			'user-data-dir',
 			'locale',
 			'js-flags',
-			'max-memory'
+			'max-memory',
+			'crash-reporter-directory'
 		]
 	});
 }
