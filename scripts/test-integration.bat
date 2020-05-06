@@ -67,7 +67,7 @@ call .\scripts\node-electron.bat .\node_modules\mocha\bin\_mocha .\extensions\*\
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 rmdir /s /q %VSCODEUSERDATADIR%
-REM rmdir /s /q %VSCODECRASHDIR%
+rmdir /s /q %VSCODECRASHDIR%
 
 popd
 
