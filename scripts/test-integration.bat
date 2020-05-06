@@ -4,7 +4,7 @@ setlocal
 pushd %~dp0\..
 
 set VSCODEUSERDATADIR=%TEMP%\vscodeuserfolder-%RANDOM%-%TIME:~6,2%
-set VSCODECRASHDIR=%TEMP%\vscodecrashfolder-%RANDOM%-%TIME:~6,2%
+set VSCODECRASHDIR=%~dp0\..\.build\crashes
 
 :: Figure out which Electron to use for running tests
 if "%INTEGRATION_TEST_ELECTRON_PATH%"=="" (
@@ -67,7 +67,6 @@ call .\scripts\node-electron.bat .\node_modules\mocha\bin\_mocha .\extensions\*\
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 rmdir /s /q %VSCODEUSERDATADIR%
-rmdir /s /q %VSCODECRASHDIR%
 
 popd
 
