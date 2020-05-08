@@ -47,7 +47,7 @@ steps:
 - task: RichCodeNavIndexer@0
   inputs:
     languages: 'typescript'
-    environment: 'production'
+    environment: 'staging'
 
 
 
