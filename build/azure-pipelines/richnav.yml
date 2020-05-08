@@ -44,12 +44,10 @@ steps:
 - powershell: |
     yarn download-builtin-extensions
   displayName: Download Built-in Extensions
-- task: MS-RichCodeNav.Indexer.build-task-RichCodeNavIndexer@0
-  displayName: Rich Code Navigation Upload to
+- task: RichCodeNavIndexer@0
   inputs:
     languages: 'typescript'
-    environment: production
-    isPrivateFeed: false
+    environment: 'production'
 
 
 
