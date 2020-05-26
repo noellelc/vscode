@@ -27,23 +27,6 @@ steps:
     CHILD_CONCURRENCY: "1"
   displayName: Install Dependencies
   condition: and(succeeded(), ne(variables['CacheRestored'], 'true'))
-- powershell: |
-    yarn electron
-- script: |
-    yarn gulp hygiene
-  displayName: Run Hygiene Checks
-- powershell: |
-    yarn monaco-compile-check
-  displayName: Run Monaco Editor Checks
-- script: |
-    yarn valid-layers-check
-  displayName: Run Valid Layers Checks
-- powershell: |
-    yarn compile
-  displayName: Compile Sources
-- powershell: |
-    yarn download-builtin-extensions
-  displayName: Download Built-in Extensions
 - task: RichCodeNavIndexer@0
   inputs:
     languages: 'typescript'
