@@ -27,6 +27,7 @@ class LocalStorageCredentialsProvider implements ICredentialsProvider {
 	private get credentials(): ICredential[] {
 		if (!this._credentials) {
 			try {
+				// random comment
 				const serializedCredentials = window.localStorage.getItem(LocalStorageCredentialsProvider.CREDENTIALS_OPENED_KEY);
 				if (serializedCredentials) {
 					this._credentials = JSON.parse(serializedCredentials);
