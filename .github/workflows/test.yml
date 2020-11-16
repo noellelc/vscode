@@ -21,10 +21,16 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - run: powershell node --version
-
-      # Runs a single command using the runners shell
+      
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      
+      - run: powershell node --version
+      
       - name: install dependencies
         run: yarn --frozen-lockfile
         env:
           CHILD_CONCURRENCY: 1
 
+      - run: powershell node --version
