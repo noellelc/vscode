@@ -20,17 +20,16 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - run: powershell node --version
-      
-      - uses: actions/setup-node@v1
+      - uses: actions/cache@v2
+        id: caching-stage
+        name: Cache VS Code dependencies
         with:
-          node-version: '12'
-      
-      - run: powershell node --version
-      
-      - name: install dependencies
-        run: yarn --frozen-lockfile
-        env:
-          CHILD_CONCURRENCY: 1
+          path: node_modules
+          key: ${{ runner.os }}-dependencies-${{ hashfiles('yarn.lock') }}
+          restore-keys: ${{ runner.os }}-dependencies-
 
       - run: powershell node --version
+      
+      - run: echo ${{ steps.caching-stage.outputs.cache-hit }}
+      - run: echo ${{ steps.caching-stage.outputs.cache-hit != 'true' }}
+      
