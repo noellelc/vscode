@@ -30,6 +30,5 @@ jobs:
 
       - run: powershell node --version
       
-      - run: echo ${{ steps.caching-stage.outputs.cache-hit }}
-      - run: echo ${{ steps.caching-stage.outputs.cache-hit != 'true' }}
+      - run: echo $steps.caching-stage.outputs.cache-hit
       
